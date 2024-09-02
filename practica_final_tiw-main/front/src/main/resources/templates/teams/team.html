@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Detalle del Equipo</title>
+    <link rel="stylesheet" type="text/css" href="/css/team.css">
+</head>
+
+<body>
+
+
+    <div class="background">
+        <div class="field">
+        </div>
+    </div>
+
+    <nav>
+        <div class="cabecera">
+            <a th:href="@{/}">Volver</a>
+            <h1 th:text="${equipo.nombre}" class="titulo"></h1>
+            <img th:if="${base64Image != null}" th:src="'data:image/jpeg;base64,' + ${base64Image}" class="logo">
+
+
+
+
+
+            <div th:if="${user}">
+                <a th:if="${user.rol == 'admin'}" th:href="@{'/equipo/editar/' + ${equipo.nombre}}">Editar</a>
+            </div>
+        </div>
+
+
+    </nav>
+
+    <div class="container">
+        <div class="delanteros">
+            <div class="carta">
+                <div th:if="${delanteros.size() > 1}">
+                    <a th:href="@{'/equipo/jugador/' + ${delanteros[1].getDni()}}">
+                        <img th:src="${delanteros[1].getRutaFoto()}">
+                        <p th:text="${delanteros[1].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${delanteros.size() > 0}">
+                    <a th:href="@{'/equipo/jugador/' + ${delanteros[0].getDni()}}">
+                        <img th:src="${delanteros[0].getRutaFoto()}">
+                        <p th:text="${delanteros[0].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${delanteros.size() > 2}">
+                    <a th:href="@{'/equipo/jugador/' + ${delanteros[2].getDni()}}">
+                        <img th:src="${delanteros[2].getRutaFoto()}">
+                        <p th:text="${delanteros[2].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="medios">
+            <div class="carta">
+                <div th:if="${medios.size() > 2}">
+                    <a th:href="@{'/equipo/jugador/' + ${medios[2].getDni()}}">
+                        <img th:src="${medios[2].getRutaFoto()}">
+                        <p th:text="${medios[2].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${medios.size() > 0}">
+                    <a th:href="@{'/equipo/jugador/' + ${medios[0].getDni()}}">
+                        <img th:src="${medios[0].getRutaFoto()}">
+                        <p th:text="${medios[0].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${medios.size() > 1}">
+                    <a th:href="@{'/equipo/jugador/' + ${medios[1].getDni()}}">
+                        <img th:src="${medios[1].getRutaFoto()}">
+                        <p th:text="${medios[1].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${medios.size() > 3}">
+                    <a th:href="@{'/equipo/jugador/' + ${medios[3].getDni()}}">
+                        <img th:src="${medios[3].getRutaFoto()}">
+                        <p th:text="${medios[3].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="defensas">
+            <div class="carta">
+                <div th:if="${defensas.size() > 2}">
+                    <a th:href="@{'/equipo/jugador/' + ${defensas[2].getDni()}}">
+                        <img th:src="${defensas[2].getRutaFoto()}">
+                        <p th:text="${defensas[2].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${defensas.size() > 0}">
+                    <a th:href="@{'/equipo/jugador/' + ${defensas[0].getDni()}}">
+                        <img th:src="${defensas[0].getRutaFoto()}">
+                        <p th:text="${defensas[0].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${defensas.size() > 1}">
+                    <a th:href="@{'/equipo/jugador/' + ${defensas[1].getDni()}}">
+                        <img th:src="${defensas[1].getRutaFoto()}">
+                        <p th:text="${defensas[1].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="carta">
+                <div th:if="${defensas.size() > 3}">
+                    <a th:href="@{'/equipo/jugador/' + ${defensas[3].getDni()}}">
+                        <img th:src="${defensas[3].getRutaFoto()}">
+                        <p th:text="${defensas[3].getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="portero">
+            <div class="carta">
+                <div th:if="${portero != null}">
+                    <a th:href="@{'/equipo/jugador/' + ${portero.getDni()}}">
+                        <img th:src=" ${portero.getRutaFoto()}">
+                        <p th:text="${portero.getAlias()}"></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="banquillo">
+            <div class="carta" th:each="i : ${#numbers.sequence( 0, suplentes.size()-1, 1)}">
+                <a th:href="@{'/equipo/jugador/' + ${suplentes[i].getDni()}}">
+                    <img th:src=" ${suplentes[i].getRutaFoto()}">
+                    <p th:text="${suplentes[i].getAlias()}"></p>
+                </a>
+            </div>
+        </div>
+
+</body>
+
+</html>

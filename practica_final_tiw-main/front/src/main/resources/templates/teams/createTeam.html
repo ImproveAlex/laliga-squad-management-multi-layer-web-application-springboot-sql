@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+
+<body>
+    <a th:href="@{/}">Volver</a>
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1>Crear equipo</h1>
+
+        <form th:action="@{/crearEquipo}" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="rutaFoto">Ruta de la foto:</label>
+            <input type="text" id="rutaFoto" name="rutaFoto" required><br><br>
+
+            <label for="posicion">Posición:</label>
+            <input type="text" id="posicion" name="posicion" required><br><br>
+
+            <input type="submit" value="Crear equipo">
+        </form>
+
+
+        <div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

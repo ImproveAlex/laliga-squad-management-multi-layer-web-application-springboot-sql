@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+<body>
+    <a th:href="@{/}">Volver</a>
+<!-- Contenido principal -->
+<div class="container">
+    <h1>Registro de Usuario</h1>
+
+    <p th:if="${registererror}" class="error" th:text="${registererror}" style="color:red;"></p>
+
+    <form th:action="@{/register}" method="post">
+        <label>Nombre: <input type="text" name="nombre" required></label>
+        <label>Apellidos: <input type="text" name="apellidos" required></label>
+        <label>Contraseña: <input type="password" name="contrasena" required></label>
+        <label>Correo Electrónico: <input type="email" name="correo" required></label>
+        
+        <label>Rol:
+            <select name="rol" required>
+                <option value="normal">Normal</option>
+                <option value="admin">Admin</option>
+            </select>
+        </label>
+        
+
+
+        <label>Equipo Favorito (opcional):
+            <select name="equipo" >
+                <option value="">Ninguno</option>
+                <option th:each="equipo : ${equipos}" th:value="${equipo.nombre}" th:text="${equipo.nombre}"></option>
+            </select>
+        </label>
+
+        <input type="submit" value="Registrarse">
+    </form>
+
+    <div>
+        <p>¿Ya tienes una cuenta? <a th:href="@{/login}">Iniciar Sesión</a></p>
+    </div>
+</div>
+
+</body>
+</html>

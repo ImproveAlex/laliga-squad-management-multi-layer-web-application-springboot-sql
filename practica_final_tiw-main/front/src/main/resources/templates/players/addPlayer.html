@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar equipo</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+
+<body>
+    <a th:href="@{'/equipo/' + ${equipo.nombre}}">Volver</a>
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 th:text="'Añadir jugador al ' + ${equipo.nombre}"></h1>
+
+        <p th:if="${error}" th:text="${error}" class="error"></p>
+
+        <form th:action="@{'/equipo/editar/nuevoJugador/' + ${equipo.nombre}}" method="POST">
+            <label>DNI: <input type="text" name="dni" required></label>
+            <label>Nombre: <input type="text" name="nombreJugador" required></label>
+            <label>Apellidos: <input type="text" name="apellidos" required></label>
+            <label>Alias: <input type="text" name="alias" required></label>
+            <label>Ruta de su Foto: <input type="text" name="rutaFoto" required></label>
+            <label>Posicion:
+                <select name="posicion" required>
+                    <option value="portero">Portero</option>
+                    <option value="defensa">Defensa</option>
+                    <option value="medio">Mediocentro</option>
+                    <option value="delantero">Delantero</option>
+                </select>
+            </label>
+            <br>
+
+            <input type="submit" value="Guardar nuevo jugador">
+        </form>
+        </br>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 5%; /* Margen del 5% alrededor de la página */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url("/assets/fondochat.jpg") no-repeat center center fixed;
+    background-size: cover;
+    overflow: auto;
+}
+
+/* ... (rest of your CSS remains unchanged) ... */
+#message-container {
+    background-color: #ccebff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 20px auto; /* Establecer márgenes superior e inferior a 20px y centrar horizontalmente con "auto" */
+    width: 50%;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+#message-container2 {
+    background-color: #ccebff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 20px auto; /* Establecer márgenes superior e inferior a 20px y centrar horizontalmente con "auto" */
+    width: 50%;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+form label {
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+h2 {
+    text-align: center; /* Center the text for all h2 elements */
+}
+
+#message-title {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+#message-title2 {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+#send-message-form {
+    background-color: #ccebff; /* Soft blue background color */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+#send-emaildest,
+#mensaje {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Border color for input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+}
+
+#send-message-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the button */
+}
+
+#send-message-form button:hover {
+    background-color: #45a049;
+}
+a {
+    display: block;
+    padding: 14px 16px;
+    background-color: #4682b4;
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    background-color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    max-width: 80%; /* Ancho máximo del contenedor al 80% de la página */
+    margin: 0 auto; /* Centra el contenedor */
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message p {
+    margin: 0;
+}
+
+form {
+    max-width: 60%; /* Ancho máximo del formulario al 60% de la página */
+    margin: 20px auto; /* Centra el formulario con un margen arriba y abajo */
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 600px) {
+    .container {
+        margin: 5%;
+    }
+
+    form {
+        max-width: 100%; /* Para pantallas más pequeñas, el formulario toma el ancho completo */
+    }
+}

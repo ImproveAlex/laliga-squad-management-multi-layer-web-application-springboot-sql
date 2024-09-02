@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+
+<body>
+
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="linea-flex">
+            <h1 th:if="${user}" th:text="'¡Hola, ' + ${user.nombre} + '!'"></h1>
+            <a th:if="${user}" th:href="@{/logout}" class="main-button">Cerrar Sesión</a>
+        </div>
+
+
+        <a th:if="${user}" th:href="@{'/users/edit/' + ${user.correo}}" class="main-button">Modifica tus datos</a>
+        <a th:if="${user}" th:href="@{'/users/delete/' + ${user.correo}}" class="main-button">Borra tu cuenta</a>
+        <a th:if="${user}" th:href="@{/chat}" class="main-button">Chat</a>
+        <script th:if="${addcookie}" th:inline="javascript">
+            var addcookie = /*[[${addcookie}]]*/ 'default';
+            if (addcookie !== 'default') {
+                document.cookie = 'correo=' + addcookie + '; path=/';
+                document.location.href = "/"
+            }
+        </script>
+
+        <div th:unless="${user}">
+            <!-- Enlace para loguearse -->
+            <a th:href="@{/login}">Iniciar Sesión</a>
+            <br>
+            <br>
+
+            <!-- Enlace para registrarse -->
+            <a th:href="@{/register}">Registrarse</a>
+        </div>
+        <br>
+
+        <div class="linea"></div>
+
+        <h2>La Liga UC3M</h2>
+
+        <li id="tabla-liga">
+            <ul th:each="equipo : ${equipos}">
+                <div th:if="${user != null && user.equipo != null}">
+                    <a th:href="@{'/equipo/' + ${equipo.nombre}}"
+                        th:class="${user.equipo.equals(equipo.getNombre()) ? 'favorito' : ''}">
+                        <b th:text="${equipo.posicion}"></b>
+                        <b th:text="${equipo.nombre}"></b>
+                        <img th:if="${equipo.rutaFoto != null}" th:src="'data:image/jpeg;base64,' + ${equipo.rutaFoto}" class="logo" width="20" height="20">
+                    </a>
+                </div>
+
+                <div th:if="${user == null || user.equipo == null}">
+                    <a th:href="@{'/equipo/' + ${equipo.nombre}}">
+                        <b th:text="${equipo.posicion}"></b>
+                        <b th:text="${equipo.nombre}"></b>
+                        <img th:if="${equipo.rutaFoto != null}" th:src="'data:image/jpeg;base64,' + ${equipo.rutaFoto}" class="logo" width="20" height="20">
+                    </a>
+                </div>
+            </ul>
+        </li>
+    </div>
+
+    <div th:if="${user}">
+        <a th:if="${user.rol == 'admin'}" id="new-team" th:href="@{/crearEquipo}">+</a>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Borrar Usuario</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+<body>
+<a th:href="@{/}">Volver</a>
+<!-- Contenido principal -->
+
+<div class="container">
+    <h1>¿Desea eliminar su usuario de forma permanente?</h1>
+    <form th:action="@{'/users/delete/' + ${user.correo}}" method="POST">
+        <input type="hidden" name="correo" th:value="${user.correo}" readonly>
+        <button type="submit" style="display: block; margin: 0 auto;">Borrar mi usuario</button>
+    </form>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar equipo</title>
+    <link rel="stylesheet" type="text/css" href="/css/team.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+
+<body>
+    <a th:href="@{'/equipo/' + ${jugador.equipo}}">Volver</a>
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1>Vista del Jugador</h1>
+        <br>
+        <div class="viewplayer-content">
+            <div class="carta-playerview">
+
+                <div class="carta-header">
+                    <img th:if="${equipo.rutaFoto != null}" th:src="'data:image/jpeg;base64,' + ${equipo.rutaFoto}" class="playerview-teamimage">
+                    <img th:src="${jugador.rutaFoto}" class="playerview-image">
+                </div>
+                <p th:text="${jugador.alias}"></p>
+                <div>
+                    <p>Nombre: </p>
+                    <p th:text="${jugador.nombre} + ' ' + ${jugador.apellidos}"></p>
+                </div>
+                <div>
+                    <p>Posicion: </p>
+                    <p th:text="${jugador.posicion}"></p>
+                </div>
+                <div>
+                    <p>DNI: </p>
+                    <p th:text="${jugador.dni}"></p>
+                </div>
+            </div>
+            <div th:if="${admin}">
+                <h1>Editar jugador</h1>
+                <form th:action="@{'/equipo/jugador/' + ${jugador.dni}}" method="POST">
+                    <label>Nombre: <input type="text" name="nombre" th:value="${jugador.nombre}"></label>
+                    <label>Apellidos: <input type="text" name="apellidos" th:value="${jugador.apellidos}"></label>
+                    <label>Alias: <input type="text" name="alias" th:value="${jugador.alias}"></label>
+                    <label>Foto: <input type="text" name="rutaFoto" th:value="${jugador.rutaFoto}"></label>
+                    <label>Posición:
+                        <select name="posicion" required>
+                            <option value="portero" th:selected="${jugador.posicion.equals('portero')}">Portero
+                            </option>
+                            <option value="defensa" th:selected="${jugador.posicion.equals('defensa')}">Defensa
+                            </option>
+                            <option value="medio" th:selected="${jugador.posicion.equals('medio')}">Mediocentro
+                            </option>
+                            <option value="delantero" th:selected="${jugador.posicion.equals('delantero')}">Delantero
+                            </option>
+                        </select>
+                    </label>
+                    <input type="hidden" name="action" th:value="edit" readonly>
+                    <input type="submit" value="Cambiar los datos">
+                </form>
+                <p th:if="${error}" th:text="${error}" class="error"></p>
+            </div>
+        </div>
+        <div th:if="${admin}">
+            <h1>Borrar Jugador</h1>
+            <form th:action="@{'/equipo/jugador/' + ${jugador.dni}}" method="POST">
+                <input type="hidden" name="nombre" th:value="${jugador.nombre}" readonly>
+                <input type="hidden" name="apellidos" th:value="${jugador.apellidos}" readonly>
+                <input type="hidden" name="alias" th:value="${jugador.alias}" readonly>
+                <input type="hidden" name="rutaFoto" th:value="${jugador.rutaFoto}" readonly>
+                <input type="hidden" name="posicion" th:value="${jugador.posicion}" readonly>
+                <input type="hidden" name="action" th:value="delete" readonly>
+                <input type="submit" value="Borrar el jugador">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

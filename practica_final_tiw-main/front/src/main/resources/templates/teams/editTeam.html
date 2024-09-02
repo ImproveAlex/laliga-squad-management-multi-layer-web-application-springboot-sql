@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar equipo</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleindex.css">
+</head>
+
+<body>
+    <a th:href="@{'/equipo/' + ${equipo.nombre}}">Volver</a>
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 th:text="'Editar ' + ${equipo.nombre}"></h1>
+
+        <form th:action="@{'/equipo/editar/' + ${equipo.nombre}}" method="POST">
+            <label>Ruta de la imagen: <input type="text" name="rutaFoto" th:value="${equipo.rutaFoto}" required></label>
+            <label>Posición: <input type="text" name="posicion" th:value="${equipo.posicion}" required></label>
+            <input type="hidden" name="action" th:value="editTeam" readonly>
+            <input type="submit" value="Guardar Valores">
+        </form>
+        </br>
+
+
+        <h1 th:text="'Borrar ' + ${equipo.nombre}"></h1>
+
+        <form th:action="@{'/equipo/editar/' + ${equipo.nombre}}" method="POST">
+            <input type="hidden" name="rutaFoto" th:value="${equipo.rutaFoto}">
+            <input type="hidden" name="posicion" th:value="${equipo.posicion}">
+            <input type="hidden" name="action" th:value="delete" readonly>
+            <input type="submit" value="Borrar equipo">
+        </form>
+        </br>
+
+        <h1 th:text="'Añadir jugador al ' + ${equipo.nombre}"></h1>
+        <a th:href="@{'/equipo/editar/nuevoJugador/' + ${equipo.nombre}}" class="main-button">Crear jugador</a>
+
+
+
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" type="text/css" href="/css/chatstyle.css">
+</head>
+<body>
+<a th:href="@{/}">Volver</a>
+
+<!-- Form to send messages -->
+<form id="send-message-form" th:action="@{/sendmessage}" th:object="${newMensaje}" method="post" enctype="application/json">
+    <label>Enviar un mensaje a un Usuario:</label>
+    <input type="hidden" id="send-emailori" name="emailori">
+    <input type="text" id="send-emaildest" name="emaildest" placeholder="Email destino" th:field="*{emaildest}">
+    <textarea id="mensaje" placeholder="Escribe tu mensaje" th:field="*{mensaje}"></textarea>
+    <button type="submit">Send</button>
+</form>
+<h2 name="message-title">Mensajes enviados</h2>
+<div id="message-container">
+    <!-- Check if there are messages to display -->
+    <div th:if="${not #lists.isEmpty(mensajes)}" th:each="mensaje : ${mensajes}">
+        <div th:text="${'[' + mensaje.getEmaildest() + '] ' + mensaje.getMensaje()}"></div>
+    </div>
+    <!-- If no messages, display a message indicating that -->
+    <div th:if="${#lists.isEmpty(mensajes)}">
+        <p>No has enviado ningun mensaje.</p>
+    </div>
+</div>
+<h2 name="message-title2">Mensajes recibidos</h2>
+<div id="message-container2">
+    <!-- Check if there are messages to display -->
+    <div th:if="${not #lists.isEmpty(mensajes2)}" th:each="mensaje2 : ${mensajes2}">
+        <div th:text="${'[' + mensaje2.getEmailori() + '] ' + mensaje2.getMensaje()}"></div>
+    </div>
+    <!-- If no messages, display a message indicating that -->
+    <div th:if="${#lists.isEmpty(mensajes2)}">
+        <p>No has recivido ningun mensaje.</p>
+    </div>
+</div>
+</div>
+</body>
+</html>
